@@ -31,7 +31,9 @@ $(RELEASE_FILE): app-compile phoenix-assets
 	$(IN_APP_DIR) mix release --env=$(MIX_ENV)
 
 app-compile: app-deps
-	$(IN_COMEONIN_DIR) make clean && make && $(IN_APP_DIR) MIX_ENV=$(MIX_ENV) mix compile
+	@echo "Making comeonin ..."
+	$(IN_COMEONIN_DIR) make clean && make
+	$(IN_APP_DIR) MIX_ENV=$(MIX_ENV) mix compile
 
 app-deps:
 	$(IN_APP_DIR) mix deps.get
