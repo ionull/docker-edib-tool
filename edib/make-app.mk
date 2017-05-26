@@ -3,7 +3,6 @@
 include edib/shared.mk
 
 IN_APP_DIR           = cd $(APP_DIR) &&
-IN_COMEONIN_DIR      = cd $(APP_DIR)/deps/comeonin &&
 PHOENIX              = $(shell $(APPINFO_RUNNER) phoenix)
 ifeq ($(PHOENIX),true)
 PHOENIX_TASKS        = phoenix-brunch-build phoenix-digest
@@ -31,8 +30,6 @@ $(RELEASE_FILE): app-compile phoenix-assets
 	$(IN_APP_DIR) mix release --env=$(MIX_ENV)
 
 app-compile: app-deps
-	@echo "Making comeonin ..."
-	$(IN_COMEONIN_DIR) make clean && make
 	$(IN_APP_DIR) MIX_ENV=$(MIX_ENV) mix compile
 
 app-deps:
